@@ -1448,6 +1448,138 @@ body:not(.admin-active) .agent-tab-btn[data-agent-hidden="true"] { display:none 
 body.admin-active .agent-tab-btn[data-agent-hidden="true"]::after { content:'숨김'; display:inline-block; margin-left:8px; padding:1px 6px; border-radius:5px; background:#fef3c7; color:#92400e; font-size:.75rem; }
 .agent-visibility-empty { padding:24px; border:1px dashed #cbd5e1; border-radius:10px; color:#475569; text-align:center; }
 </style>
+<style id="trpg-application-style">
+#tab-application { --application-navy:#14273f; --application-blue:#2563eb; --application-muted:#63748a; color:#24354c; min-width:0; }
+body:has(#tab-application.active) #portal-tools { display:none; }
+#tab-application [hidden] { display:none!important; }
+#tab-application *,#tab-application *::before,#tab-application *::after { box-sizing:border-box; }
+#tab-application .application-hero { display:flex; justify-content:space-between; gap:24px; position:relative; overflow:hidden; padding:34px 36px; border:1px solid #223e5e; border-radius:15px; background:linear-gradient(120deg,#14273f 0%,#1b3655 100%); color:white; }
+#tab-application .application-hero::after { content:''; position:absolute; width:230px; height:230px; right:-80px; top:-110px; border:1px solid #ffffff12; border-radius:50%; box-shadow:0 0 0 42px #ffffff04,0 0 0 84px #ffffff03; pointer-events:none; }
+#tab-application .application-hero-content { position:relative; z-index:1; min-width:0; }
+#tab-application .application-kicker { margin:0 0 12px; color:#8ddacb; font-size:.66rem; font-weight:700; letter-spacing:.18em; }
+#tab-application .application-title-row { display:flex; align-items:center; flex-wrap:wrap; gap:11px; }
+#tab-application .application-title-row h1 { margin:0; font-size:1.85rem; font-weight:800; line-height:1.35; letter-spacing:-.045em; color:#fff; }
+#tab-application .application-temp-badge { padding:4px 9px; border:1px solid #99c0e84d; border-radius:5px; background:#c2dfff12; color:#c8dcf0; font-size:.68rem; font-weight:600; white-space:nowrap; }
+#tab-application .application-intro { margin:17px 0 5px; font-size:.98rem; font-weight:600; color:#f1f6fc; }
+#tab-application .application-hero-description { margin:0; color:#b0c2d7; font-size:.8rem; line-height:1.7; word-break:keep-all; }
+#tab-application .application-document-mark { display:flex; flex-direction:column; justify-content:center; align-items:flex-end; flex-shrink:0; padding-left:20px; border-left:1px solid #a8c1de2b; position:relative; z-index:1; text-align:right; }
+#tab-application .application-document-mark>span { color:#92b2d4; font-size:.64rem; letter-spacing:.2em; }
+#tab-application .application-document-mark strong { margin:10px 0 12px; font-size:.88rem; line-height:1.5; letter-spacing:.04em; color:#dfebf8; }
+#tab-application .application-document-mark small { color:#91a8c1; font-size:.58rem; letter-spacing:.07em; }
+#tab-application .application-draft-bar { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:7px 16px; margin:15px 2px 24px; font-size:.72rem; line-height:1.6; color:var(--application-muted); }
+#tab-application #application-draft-status { display:flex; align-items:baseline; gap:7px; }
+#tab-application #application-draft-status::before { content:''; display:inline-block; flex:0 0 6px; width:6px; height:6px; border-radius:50%; background:#31a98f; }
+#tab-application #application-draft-status[data-state=warning]::before { background:#d79a35; }
+#tab-application .application-private-note { color:#8795a7; font-size:.67rem; }
+#tab-application .application-card { min-width:0; padding:25px 26px; border:1px solid #dde5ee; border-radius:12px; background:#fff; box-shadow:0 3px 12px #1b365504; }
+#tab-application .application-card-header { display:flex; align-items:flex-start; gap:12px; margin-bottom:23px; }
+#tab-application .application-section-number { display:grid; place-items:center; flex:0 0 30px; height:30px; border:1px solid #dbe6f2; border-radius:8px; background:#f3f7fc; color:#537293; font-size:.72rem; font-weight:800; }
+#tab-application .application-card-header h2 { margin:1px 0 5px; color:var(--application-navy); font-size:1.02rem; font-weight:800; line-height:1.4; letter-spacing:-.025em; }
+#tab-application .application-card-header p { margin:0; color:var(--application-muted); font-size:.74rem; line-height:1.6; word-break:keep-all; }
+#tab-application .application-required-note { margin-left:auto; padding-top:5px; color:#7b899b; font-size:.66rem; white-space:nowrap; }
+#tab-application .application-required-note b,#tab-application .application-field>span>b { color:#2563eb; font-weight:800; }
+#tab-application .application-basic-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:19px 18px; }
+#tab-application .application-name-field,#tab-application .application-body-field { grid-column:span 2; }
+#tab-application .application-field { display:flex; flex-direction:column; min-width:0; gap:8px; font-size:.79rem; color:#33475f; font-weight:700; }
+#tab-application .application-field>span { display:flex; align-items:center; gap:5px; }
+#tab-application .application-field>span>small { margin-left:auto; font-size:.56rem; font-weight:500; letter-spacing:.09em; color:#94a0b1; }
+#tab-application .application-field input,#tab-application .application-field textarea { min-width:0; width:100%; padding:11px 12px; border:1px solid #dbe3ed; border-radius:7px; background:#fbfcfe; color:#263950; font-family:inherit; font-size:.81rem; font-weight:400; line-height:1.6; transition:border-color .15s,box-shadow .15s; }
+#tab-application .application-field textarea { resize:vertical; min-height:85px; }
+#tab-application .application-field input::placeholder,#tab-application .application-field textarea::placeholder { color:#95a1b1; opacity:1; }
+#tab-application input:focus,#tab-application textarea:focus { outline:none; border-color:#779de6; box-shadow:0 0 0 3px #2563eb0c; background:#fff; }
+#tab-application .application-field input[aria-invalid=true] { border-color:#d76d73; }
+#tab-application .application-unit-input { position:relative; }
+#tab-application .application-unit-input input { padding-right:42px; }
+#tab-application .application-unit-input>span { position:absolute; right:13px; top:50%; transform:translateY(-50%); font-size:.72rem; color:#8291a3; font-weight:400; pointer-events:none; }
+#tab-application .application-field-error { font-size:.7rem; line-height:1.5; font-weight:500; color:#b7444e; }
+#tab-application .application-detail-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(270px,.8fr); align-items:start; gap:20px; margin-top:20px; }
+#tab-application .application-story-fields { display:flex; flex-direction:column; gap:22px; }
+#tab-application .application-stats { padding:25px 22px 22px; }
+#tab-application .application-budget { display:grid; grid-template-columns:1fr auto; gap:13px 12px; padding:16px; background:#f3f7fc; border:1px solid #dfe9f4; border-radius:9px; }
+#tab-application .application-budget>div>span { display:block; color:#63758e; font-size:.69rem; }
+#tab-application .application-budget strong { display:flex; align-items:baseline; gap:6px; margin-top:2px; color:#18395e; font-size:2rem; font-weight:800; line-height:1.3; font-variant-numeric:tabular-nums; }
+#tab-application .application-budget strong small { font-size:.65rem; font-weight:700; color:#7089a6; }
+#tab-application #application-budget-badge { align-self:start; padding:4px 7px; border-radius:4px; background:#e1ebf8; color:#50729c; font-size:.62rem; font-weight:600; white-space:nowrap; }
+#tab-application #application-budget-badge[data-complete=true] { color:#11765e; background:#dcefe7; }
+#tab-application .application-budget progress { display:block; grid-column:1 / -1; width:100%; height:5px; appearance:none; border:none; border-radius:4px; overflow:hidden; color:#386baf; background:#dfe7f1; }
+#tab-application .application-budget progress::-webkit-progress-bar { background:#dfe7f1; border-radius:4px; }
+#tab-application .application-budget progress::-webkit-progress-value { border-radius:4px; background:#386baf; transition:width .15s; }
+#tab-application .application-budget progress::-moz-progress-bar { border-radius:4px; background:#386baf; }
+#tab-application .application-budget>p { display:flex; justify-content:space-between; gap:8px; grid-column:1 / -1; margin:0; font-size:.64rem; color:#7a8ba1; }
+#tab-application .application-budget>p b { font-weight:600; color:#536e90; font-variant-numeric:tabular-nums; }
+#tab-application .application-stat-help { margin:14px 0 8px; font-size:.65rem; line-height:1.7; color:#8794a5; word-break:keep-all; }
+#tab-application .application-stat-row { display:flex; align-items:center; justify-content:space-between; gap:10px; min-height:61px; padding:11px 0; border-bottom:1px solid #eef1f5; }
+#tab-application .application-stat-row:last-child { border-bottom:none; }
+#tab-application .application-stat-row>label { font-size:.84rem; color:#30435c; font-weight:700; line-height:1.3; }
+#tab-application .application-stat-row>label>small { display:block; margin-top:4px; font-size:.49rem; color:#92a0b1; font-weight:500; letter-spacing:.08em; }
+#tab-application .application-stepper { display:grid; grid-template-columns:30px 34px 30px; align-items:center; gap:1px; border:1px solid #dce4ee; border-radius:7px; background:#fff; padding:2px; }
+#tab-application .application-stepper>button { display:grid; place-items:center; min-width:30px; height:30px; border:0; border-radius:4px; background:#f0f5fb; color:#41658f; font:inherit; font-size:1rem; line-height:1; cursor:pointer; }
+#tab-application .application-stepper>button:hover:enabled { background:#e2edfc; color:#1d4c8a; }
+#tab-application .application-stepper>button:disabled { background:#f8fafc; color:#c5cfda; cursor:default; }
+#tab-application .application-stepper>input { width:100%; min-width:0; padding:3px 0; border:none; border-radius:3px; background:transparent; text-align:center; color:#254568; font-family:inherit; font-size:.91rem; font-weight:800; font-variant-numeric:tabular-nums; appearance:textfield; -moz-appearance:textfield; }
+#tab-application .application-stepper input::-webkit-inner-spin-button,#tab-application .application-stepper input::-webkit-outer-spin-button { appearance:none; margin:0; }
+#tab-application .application-stat-error { margin:10px 0 0; color:#b7444e; font-size:.7rem; line-height:1.7; }
+#tab-application .application-output-area { margin-top:19px; padding-top:19px; border-top:1px solid #e5ebf2; }
+#tab-application #application-ready-message { margin:0 0 12px; color:#7a899c; font-size:.7rem; line-height:1.7; word-break:keep-all; }
+#tab-application #application-ready-message[data-ready=true] { color:#168369; }
+#tab-application .application-actions { display:flex; gap:8px; }
+#tab-application .application-actions>button { display:flex; justify-content:center; align-items:center; gap:7px; flex:1; min-width:0; min-height:42px; padding:10px 11px; border-radius:7px; font-family:inherit; font-size:.74rem; font-weight:700; line-height:1.5; white-space:nowrap; cursor:pointer; transition:background .15s; }
+#tab-application .application-primary-button { border:1px solid #254e80; color:#fff; background:#254e80; }
+#tab-application .application-primary-button:hover:enabled { background:#1b3b63; }
+#tab-application .application-secondary-button { border:1px solid #cdd9e7; background:#fff; color:#4a6483; }
+#tab-application .application-secondary-button:hover:enabled { background:#f1f6fc; }
+#tab-application .application-actions>button:disabled { cursor:not-allowed; opacity:.52; }
+#tab-application .application-delivery-note { margin:11px 0 0; text-align:center; font-size:.61rem; line-height:1.7; color:#91a0b1; word-break:keep-all; }
+#tab-application .application-footer { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-top:22px; padding:0 2px; }
+#tab-application .application-footer>p { margin:0; max-width:100%; font-size:.7rem; line-height:1.7; color:#8290a2; word-break:keep-all; }
+#tab-application .application-footer>button { flex-shrink:0; padding:5px 0; border:0; border-bottom:1px solid #aab6c6; background:transparent; color:#738398; font-family:inherit; font-size:.7rem; cursor:pointer; }
+#tab-application button:focus-visible { outline:2px solid #2563eb; outline-offset:3px; }
+#tab-application .application-feedback { margin-top:18px; padding:13px 16px; border:1px solid #d9e5f2; border-radius:8px; background:#eef5fc; color:#446489; font-size:.77rem; line-height:1.7; }
+#tab-application .application-feedback[data-kind=success] { border-color:#cbe7dd; background:#edf8f3; color:#29765f; }
+#tab-application .application-feedback[data-kind=error] { border-color:#efcdd0; background:#fff3f3; color:#ae414d; }
+#tab-application .application-copy-panel { margin-top:18px; padding:22px; border:1px solid #cbd9ea; border-radius:10px; background:#fff; }
+#tab-application .application-copy-panel>div { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+#tab-application .application-copy-panel h2 { margin:0; font-size:.94rem; color:#27476e; }
+#tab-application .application-copy-panel button { border:1px solid #d8e1ed; border-radius:5px; padding:5px 9px; color:#647a96; background:#f8fafc; font-family:inherit; font-size:.7rem; cursor:pointer; }
+#tab-application .application-copy-panel p { margin:12px 0; color:#7c8b9e; font-size:.74rem; line-height:1.7; }
+#tab-application .application-copy-panel textarea { display:block; width:100%; min-width:0; min-height:220px; padding:14px; border:1px solid #dce4ed; border-radius:7px; color:#33475f; background:#f9fbfe; font-family:inherit; font-size:.8rem; line-height:1.8; resize:vertical; }
+@media(max-width:1050px) {
+  #tab-application .application-detail-grid { grid-template-columns:minmax(0,1fr); }
+  #tab-application .application-stat-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:28px; }
+  #tab-application .application-stat-row:last-child { border-bottom:1px solid #eef1f5; }
+  #tab-application .application-actions>button { flex:0 1 180px; }
+  #tab-application .application-actions { justify-content:flex-end; }
+  #tab-application .application-delivery-note { text-align:right; }
+}
+@media(max-width:620px) {
+  #tab-application .application-hero { padding:27px 23px; border-radius:12px; }
+  #tab-application .application-document-mark { display:none; }
+  #tab-application .application-title-row h1 { font-size:1.6rem; }
+  #tab-application .application-hero-description { font-size:.75rem; }
+  #tab-application .application-intro { font-size:.9rem; }
+  #tab-application .application-card,#tab-application .application-stats { padding:22px 20px; }
+  #tab-application .application-basic-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px 13px; }
+  #tab-application .application-name-field { grid-column:1 / -1; }
+  #tab-application .application-body-field { grid-column:auto; }
+  #tab-application .application-required-note { font-size:.6rem; }
+  #tab-application .application-card-header { gap:10px; }
+  #tab-application .application-card-header h2 { font-size:.98rem; }
+  #tab-application .application-card-header p { font-size:.69rem; }
+  #tab-application .application-stat-list { grid-template-columns:minmax(0,1fr); }
+  #tab-application .application-stat-row { min-height:62px; }
+  #tab-application .application-stepper { grid-template-columns:44px 42px 44px; }
+  #tab-application .application-stepper>button { min-width:44px; min-height:44px; }
+  #tab-application .application-field input,#tab-application .application-field textarea,#tab-application .application-stepper>input { font-size:1rem; }
+  #tab-application .application-draft-bar { margin-bottom:20px; }
+  #tab-application .application-private-note { font-size:.62rem; }
+  #tab-application .application-actions>button { flex:1; }
+  #tab-application .application-delivery-note { text-align:center; }
+  #tab-application .application-footer { gap:14px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  #tab-application input,#tab-application textarea,#tab-application button,#tab-application progress::-webkit-progress-value { transition:none!important; }
+}
+</style>
 </head>
 <body class="">
 
@@ -1488,6 +1620,17 @@ body.admin-active .agent-tab-btn[data-agent-hidden="true"]::after { content:'숨
         <button class="nav-btn active" onclick="openTab('tab-recruit', this)" aria-current="page">
           <span class="nav-icon" data-editable="true">📋</span>
           <span class="nav-label" data-editable="true">채용공고</span>
+        </button>
+        <div class="nav-item-controls">
+          <button class="nav-mini-btn" onclick="moveNavItem(this, -1)" title="위로">◀</button>
+          <button class="nav-mini-btn" onclick="moveNavItem(this, 1)" title="아래로">▶</button>
+          <button class="nav-mini-btn" onclick="deleteNavItem(this)" title="메뉴 삭제">✕</button>
+        </div>
+      </li>
+      <li class="nav-item" data-target="tab-application">
+        <button class="nav-btn" onclick="openTab('tab-application', this)" aria-current="false">
+          <span class="nav-icon" data-editable="true">✍️</span>
+          <span class="nav-label" data-editable="true">캐릭터 신청</span>
         </button>
         <div class="nav-item-controls">
           <button class="nav-mini-btn" onclick="moveNavItem(this, -1)" title="위로">◀</button>
@@ -1654,13 +1797,13 @@ body.admin-active .agent-tab-btn[data-agent-hidden="true"]::after { content:'숨
     </section>
 
     <!-- ==================== TAB 2: 사내 시스템 & 경제/리스크 ==================== -->
-    <section id="tab-system" class="tab-section"><div class="hero-banner"><h1 class="hero-title">사내시스템</h1></div><div class="compact-rulebook"><details class="rule-section" data-reading-guide="1" id="company-money" open=""><summary><span class="rule-section-icon" aria-hidden="true">💰</span><span class="rule-summary-copy">돈·정산</span></summary><div><ul class="rule-lines"><li><span class="rule-line-icon" aria-hidden="true">💠</span><span class="rule-line-copy">카르마는 돈과 성장에 쓴다. 영향력 보상은 실제 운명 변화, 계약 보상은 목표 달성으로 얻는다. 실패해도 인정된 영향력은 남는다.</span></li><li><span class="rule-line-icon" aria-hidden="true">📊</span><span class="rule-line-copy">총수입−공동 비용을 사원 <strong>60%</strong>·지구 <strong>20%</strong>·회사 <strong>20%</strong>로 나눈다(소수점 잔여는 회사). 사원 몫은 정상 참여자에게 균등 지급하고 미지급 잔여는 보관한다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🎁</span><span class="rule-line-copy">기여 보너스는 회사 몫에서 지급한다(전체 사원 몫의 <strong>10%</strong>·개인 기본 몫의 <strong>20%</strong> 이내). 기존 부채는 개인 수입의 최대 <strong>50%</strong>로 갚고, 적자는 공동 부채로 나눈다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🎯</span><span class="rule-line-copy">기본 순보상 목표는 일반 의뢰 <strong>1레벨</strong>·어려운 의뢰 <strong>2~3레벨</strong> 성장비다. 보상은 결과에 따른다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🎒</span><span class="rule-line-copy">기준 성장비는 출격 당시 다음 <strong>1레벨</strong> 비용(<strong>Lv.100</strong>은 <strong>50,000</strong>)이다. 출격 키트는 그 절반을 올림하고 장비 전송비는 별도다.</span></li></ul></div></details>
-<details class="rule-section" data-reading-guide="1" id="company-mission" open=""><summary><span class="rule-section-icon" aria-hidden="true">🚪</span><span class="rule-summary-copy">출격·귀환</span></summary><div><ul class="rule-lines"><li><span class="rule-line-icon" aria-hidden="true">📋</span><span class="rule-line-copy">출격 전 목표·보상·비용·현지 허용 능력을 정한다. 팀은 공동 목표를 따르며 고의 동료 공격·임무 방해·전리품 은닉·신분 폭로를 금지한다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🪪</span><span class="rule-line-copy">개연성은 출격마다 <strong>100</strong>으로 시작한다. <strong>60</strong> 이하는 신분 위장 판정 <strong>-1</strong>, <strong>30</strong> 이하는 <strong>-2</strong>. <strong>0</strong>이면 추적이 시작되지만 최소 <strong>3</strong>라운드 또는 <strong>3분</strong>의 대응 시간을 준다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🏠</span><span class="rule-line-copy"><strong>일반 귀환</strong>은 안전한 중계 지점에서 <strong>1분</strong>, 전투 중에는 주행동 후 다음 자기 턴까지 준비한다. 피격·자발적 이동·공격 시 중단된다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🚨</span><span class="rule-line-copy"><strong>긴급 귀환</strong>은 중계 지점 밖에서도 같은 준비로 가능하다. 비용은 기준 성장비 <strong>1배</strong>, 실제 필요한 공개 노출 수습은 <strong>2배</strong>이며 미납은 부채다.</span></li><li><span class="rule-line-icon" aria-hidden="true">📦</span><span class="rule-line-copy">왕복 베슬 이송은 키트에 포함된다. 사망 사출 자체에는 긴급 회수비가 없다. 현지 물품은 회수·검수 후 등록한다.</span></li></ul></div></details>
-<details class="rule-section" data-reading-guide="1" id="company-recovery" open=""><summary><span class="rule-section-icon" aria-hidden="true">💠</span><span class="rule-summary-copy">침식·회복</span></summary><div><ul class="rule-lines"><li><span class="rule-line-icon" aria-hidden="true">🌀</span><span class="rule-line-copy">침식도는 영혼의 <strong>0~100</strong> 수치로 베슬을 바꿔도 남는다. 정상 귀환 <strong>+0</strong>, 사망 사출 <strong>+5</strong>, <strong>24시간</strong> 안 두 번째 사출부터 <strong>+10</strong>, 살아서 긴급 회수 <strong>+2</strong>다.</span></li><li><span class="rule-line-icon" aria-hidden="true">⚠️</span><span class="rule-line-copy">침식 <strong>20·40·60·80</strong>부터 정신 집중·저항 판정이 각각 <strong>-1</strong>·<strong>-2</strong>·<strong>-3</strong>·<strong>-4</strong>다. <strong>80</strong> 이상은 고유 스킬 비용 <strong>+20%</strong>, <strong>100</strong>은 <strong>출격 중단</strong>이며 <strong>59</strong> 이하에서 복귀한다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🛡️</span><span class="rule-line-copy">침식 <strong>100</strong>은 사망·영구 삭제가 아니다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🩺</span><span class="rule-line-copy">현실 <strong>24시간</strong> 완전 휴식은 침식 <strong>-2</strong>. 전문 치료는 <strong>24시간</strong>·<strong>50카르마</strong>로 <strong>-10</strong>이며 하루 <strong>1회</strong>, 같은 날 휴식 감소와 중첩하지 않는다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🛏️</span><span class="rule-line-copy">안전한 곳에서 <strong>10분</strong> 휴식은 MP·기력 최대값의 <strong>25%</strong> 회복(버림, 양수 상한이면 최소 <strong>1</strong>), HP 회복은 없다. 본사 <strong>8시간</strong> 완전 휴식은 살아 있는 베슬의 자원을 전부 회복한다.</span></li></ul></div></details>
-<details class="rule-section" data-reading-guide="1" id="company-vessel" open=""><summary><span class="rule-section-icon" aria-hidden="true">🛡️</span><span class="rule-summary-copy">베슬·장비</span></summary><div><ul class="rule-lines"><li><span class="rule-line-icon" aria-hidden="true">🎁</span><span class="rule-line-copy">신입 지원은 최초 <strong>1회</strong>: <strong>50카르마</strong>·F급 <strong>Lv.1</strong> 베슬·육신 특성 최대 <strong>1종</strong>·육신 스킬 <strong>1종</strong>·기본 장비다. 이후 새 F급 <strong>Lv.1</strong> 베슬은 <strong>20카르마</strong>(스탯 <strong>10</strong> 배분)다.</span></li><li><span class="rule-line-icon" aria-hidden="true">💀</span><span class="rule-line-copy"><strong>HP 0</strong>이면 베슬은 사망·로스트하고 사원은 강제 귀환한다. 원래 사원은 그 베슬에 <strong>영구 재접속</strong>할 수 없다. 시체·육신 회로·장비는 현장에 남고 영혼 고유 능력은 남지 않는다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🔓</span><span class="rule-line-copy">장비·육신 회로는 베슬 등급 이하만 활성화한다. 육신 특성은 최대 <strong>3종</strong>, 스킬 슬롯은 F급 <strong>2개</strong>에서 등급마다 <strong>1개</strong>씩 늘어 최대 <strong>10개</strong>다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🧩</span><span class="rule-line-copy">같은 장비·회로는 중복 적용하지 않는다. 상의는 <strong>1개</strong>만 적용하며 양손무기는 두 손을 쓴다. 베슬 구매로 침식·부채가 사라지지 않는다.</span></li></ul></div></details></div></section>
+    <section id="tab-system" class="tab-section"><div class="hero-banner"><h1 class="hero-title">사내시스템</h1></div><div class="compact-rulebook"><details class="rule-section" data-reading-guide="1" id="company-money" open><summary><span class="rule-section-icon" aria-hidden="true">💰</span><span class="rule-summary-copy">돈·정산</span></summary><div><ul class="rule-lines"><li><span class="rule-line-icon" aria-hidden="true">💠</span><span class="rule-line-copy">카르마는 돈과 성장에 쓴다. 영향력 보상은 실제 운명 변화, 계약 보상은 목표 달성으로 얻는다. 실패해도 인정된 영향력은 남는다.</span></li><li><span class="rule-line-icon" aria-hidden="true">📊</span><span class="rule-line-copy">총수입−공동 비용을 사원 <strong>60%</strong>·지구 <strong>20%</strong>·회사 <strong>20%</strong>로 나눈다(소수점 잔여는 회사). 사원 몫은 정상 참여자에게 균등 지급하고 미지급 잔여는 보관한다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🎁</span><span class="rule-line-copy">기여 보너스는 회사 몫에서 지급한다(전체 사원 몫의 <strong>10%</strong>·개인 기본 몫의 <strong>20%</strong> 이내). 기존 부채는 개인 수입의 최대 <strong>50%</strong>로 갚고, 적자는 공동 부채로 나눈다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🎯</span><span class="rule-line-copy">기본 순보상 목표는 일반 의뢰 <strong>1레벨</strong>·어려운 의뢰 <strong>2~3레벨</strong> 성장비다. 보상은 결과에 따른다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🎒</span><span class="rule-line-copy">기준 성장비는 출격 당시 다음 <strong>1레벨</strong> 비용(<strong>Lv.100</strong>은 <strong>50,000</strong>)이다. 출격 키트는 그 절반을 올림하고 장비 전송비는 별도다.</span></li></ul></div></details>
+<details class="rule-section" data-reading-guide="1" id="company-mission" open><summary><span class="rule-section-icon" aria-hidden="true">🚪</span><span class="rule-summary-copy">출격·귀환</span></summary><div><ul class="rule-lines"><li><span class="rule-line-icon" aria-hidden="true">📋</span><span class="rule-line-copy">출격 전 목표·보상·비용·현지 허용 능력을 정한다. 팀은 공동 목표를 따르며 고의 동료 공격·임무 방해·전리품 은닉·신분 폭로를 금지한다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🪪</span><span class="rule-line-copy">개연성은 출격마다 <strong>100</strong>으로 시작한다. <strong>60</strong> 이하는 신분 위장 판정 <strong>-1</strong>, <strong>30</strong> 이하는 <strong>-2</strong>. <strong>0</strong>이면 추적이 시작되지만 최소 <strong>3</strong>라운드 또는 <strong>3분</strong>의 대응 시간을 준다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🏠</span><span class="rule-line-copy"><strong>일반 귀환</strong>은 안전한 중계 지점에서 <strong>1분</strong>, 전투 중에는 주행동 후 다음 자기 턴까지 준비한다. 피격·자발적 이동·공격 시 중단된다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🚨</span><span class="rule-line-copy"><strong>긴급 귀환</strong>은 중계 지점 밖에서도 같은 준비로 가능하다. 비용은 기준 성장비 <strong>1배</strong>, 실제 필요한 공개 노출 수습은 <strong>2배</strong>이며 미납은 부채다.</span></li><li><span class="rule-line-icon" aria-hidden="true">📦</span><span class="rule-line-copy">왕복 베슬 이송은 키트에 포함된다. 사망 사출 자체에는 긴급 회수비가 없다. 현지 물품은 회수·검수 후 등록한다.</span></li></ul></div></details>
+<details class="rule-section" data-reading-guide="1" id="company-recovery" open><summary><span class="rule-section-icon" aria-hidden="true">💠</span><span class="rule-summary-copy">침식·회복</span></summary><div><ul class="rule-lines"><li><span class="rule-line-icon" aria-hidden="true">🌀</span><span class="rule-line-copy">침식도는 영혼의 <strong>0~100</strong> 수치로 베슬을 바꿔도 남는다. 정상 귀환 <strong>+0</strong>, 사망 사출 <strong>+5</strong>, <strong>24시간</strong> 안 두 번째 사출부터 <strong>+10</strong>, 살아서 긴급 회수 <strong>+2</strong>다.</span></li><li><span class="rule-line-icon" aria-hidden="true">⚠️</span><span class="rule-line-copy">침식 <strong>20·40·60·80</strong>부터 정신 집중·저항 판정이 각각 <strong>-1</strong>·<strong>-2</strong>·<strong>-3</strong>·<strong>-4</strong>다. <strong>80</strong> 이상은 고유 스킬 비용 <strong>+20%</strong>, <strong>100</strong>은 <strong>출격 중단</strong>이며 <strong>59</strong> 이하에서 복귀한다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🛡️</span><span class="rule-line-copy">침식 <strong>100</strong>은 사망·영구 삭제가 아니다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🩺</span><span class="rule-line-copy">현실 <strong>24시간</strong> 완전 휴식은 침식 <strong>-2</strong>. 전문 치료는 <strong>24시간</strong>·<strong>50카르마</strong>로 <strong>-10</strong>이며 하루 <strong>1회</strong>, 같은 날 휴식 감소와 중첩하지 않는다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🛏️</span><span class="rule-line-copy">안전한 곳에서 <strong>10분</strong> 휴식은 MP·기력 최대값의 <strong>25%</strong> 회복(버림, 양수 상한이면 최소 <strong>1</strong>), HP 회복은 없다. 본사 <strong>8시간</strong> 완전 휴식은 살아 있는 베슬의 자원을 전부 회복한다.</span></li></ul></div></details>
+<details class="rule-section" data-reading-guide="1" id="company-vessel" open><summary><span class="rule-section-icon" aria-hidden="true">🛡️</span><span class="rule-summary-copy">베슬·장비</span></summary><div><ul class="rule-lines"><li><span class="rule-line-icon" aria-hidden="true">🎁</span><span class="rule-line-copy">신입 지원은 최초 <strong>1회</strong>: <strong>50카르마</strong>·F급 <strong>Lv.1</strong> 베슬·육신 특성 최대 <strong>1종</strong>·육신 스킬 <strong>1종</strong>·기본 장비다. 이후 새 F급 <strong>Lv.1</strong> 베슬은 <strong>20카르마</strong>(스탯 <strong>10</strong> 배분)다.</span></li><li><span class="rule-line-icon" aria-hidden="true">💀</span><span class="rule-line-copy"><strong>HP 0</strong>이면 베슬은 사망·로스트하고 사원은 강제 귀환한다. 원래 사원은 그 베슬에 <strong>영구 재접속</strong>할 수 없다. 시체·육신 회로·장비는 현장에 남고 영혼 고유 능력은 남지 않는다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🔓</span><span class="rule-line-copy">장비·육신 회로는 베슬 등급 이하만 활성화한다. 육신 특성은 최대 <strong>3종</strong>, 스킬 슬롯은 F급 <strong>2개</strong>에서 등급마다 <strong>1개</strong>씩 늘어 최대 <strong>10개</strong>다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🧩</span><span class="rule-line-copy">같은 장비·회로는 중복 적용하지 않는다. 상의는 <strong>1개</strong>만 적용하며 양손무기는 두 손을 쓴다. 베슬 구매로 침식·부채가 사라지지 않는다.</span></li></ul></div></details></div></section>
 
     <!-- ==================== TAB 3: 스탯·등급 & 판정 룰북 ==================== -->
-    <section id="tab-rules" class="tab-section"><div class="hero-banner"><h1 class="hero-title">스탯·판정</h1></div><div class="compact-rulebook"><details class="rule-section" data-reading-guide="1" id="stats-growth" open=""><summary><span class="rule-section-icon" aria-hidden="true">🌱</span><span class="rule-summary-copy">스탯·성장</span></summary><div><ul class="rule-lines"><li><span class="rule-line-icon" aria-hidden="true">📊</span><span class="rule-line-copy">건강: HP·육체 저항 / 지혜: MP·감지·정신 / 지구력: 기력·지속 행동 / 근력: 물리 공격 / 지능: 마법·지식 / 민첩: 명중·회피 / 매력: 교섭.</span></li><li><span class="rule-line-icon" aria-hidden="true">🌱</span><span class="rule-line-copy">기본 스탯 총량=레벨×<strong>10</strong>, 상한 <strong>Lv.100</strong>. <strong>1카르마</strong>=<strong>1</strong>EXP를 직접 투자해 성장한다. 승급은 다음 등급 비용+돌파 비용이다.</span></li><li><span class="rule-line-icon" aria-hidden="true">❤️</span><span class="rule-line-copy">유효 스탯=기본값+적용 보정(최소 <strong>0</strong>). 최대 HP=유효 건강×<strong>10</strong>, MP=유효 지혜×<strong>5</strong>, 기력=유효 지구력×<strong>5</strong>에 직접 자원 보정을 더한다.</span></li><li><span class="rule-line-icon" aria-hidden="true">⚔️</span><span class="rule-line-copy">물리 공격은 유효 근력+무기 <strong>1개</strong>의 물리 공격력, 마법 공격은 유효 지능+해당 장비의 마법 공격력이다. 자원·공격 기준값 <strong>0</strong>에 임의의 최저 성능을 주지 않는다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🚫</span><span class="rule-line-copy">관련 유효 스탯 <strong>0</strong>은 일반 판정 불가다. 직접 자원 보정은 별도지만 판정 능력을 만들지는 않는다. 민첩 <strong>0</strong>은 일반 공격·회피 불가, 최대 <strong>HP 0</strong>은 출격 불가다.</span></li></ul><h3>등급별 성장 비용</h3><div class="table-wrap"><table class="mobile-card-table" id="table-rank-spec">
+    <section id="tab-rules" class="tab-section"><div class="hero-banner"><h1 class="hero-title">스탯·판정</h1></div><div class="compact-rulebook"><details class="rule-section" data-reading-guide="1" id="stats-growth" open><summary><span class="rule-section-icon" aria-hidden="true">🌱</span><span class="rule-summary-copy">스탯·성장</span></summary><div><ul class="rule-lines"><li><span class="rule-line-icon" aria-hidden="true">📊</span><span class="rule-line-copy">건강: HP·육체 저항 / 지혜: MP·감지·정신 / 지구력: 기력·지속 행동 / 근력: 물리 공격 / 지능: 마법·지식 / 민첩: 명중·회피 / 매력: 교섭.</span></li><li><span class="rule-line-icon" aria-hidden="true">🌱</span><span class="rule-line-copy">기본 스탯 총량=레벨×<strong>10</strong>, 상한 <strong>Lv.100</strong>. <strong>1카르마</strong>=<strong>1</strong>EXP를 직접 투자해 성장한다. 승급은 다음 등급 비용+돌파 비용이다.</span></li><li><span class="rule-line-icon" aria-hidden="true">❤️</span><span class="rule-line-copy">유효 스탯=기본값+적용 보정(최소 <strong>0</strong>). 최대 HP=유효 건강×<strong>10</strong>, MP=유효 지혜×<strong>5</strong>, 기력=유효 지구력×<strong>5</strong>에 직접 자원 보정을 더한다.</span></li><li><span class="rule-line-icon" aria-hidden="true">⚔️</span><span class="rule-line-copy">물리 공격은 유효 근력+무기 <strong>1개</strong>의 물리 공격력, 마법 공격은 유효 지능+해당 장비의 마법 공격력이다. 자원·공격 기준값 <strong>0</strong>에 임의의 최저 성능을 주지 않는다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🚫</span><span class="rule-line-copy">관련 유효 스탯 <strong>0</strong>은 일반 판정 불가다. 직접 자원 보정은 별도지만 판정 능력을 만들지는 않는다. 민첩 <strong>0</strong>은 일반 공격·회피 불가, 최대 <strong>HP 0</strong>은 출격 불가다.</span></li></ul><h3>등급별 성장 비용</h3><div class="table-wrap"><table class="mobile-card-table" id="table-rank-spec">
 <thead><tr><th data-editable="true">등급</th><th data-editable="true">레벨</th><th data-editable="true">스탯 합계</th><th data-editable="true">레벨업</th><th data-editable="true">돌파 추가</th><th data-editable="true">승급 합계</th></tr></thead>
 <tbody>
 <tr><td data-label="등급" data-editable="true"><span class="badge badge-red">F</span></td><td data-label="레벨" data-editable="true">1~10</td><td data-label="스탯 합계" data-editable="true">10~100</td><td data-label="레벨업" data-editable="true">20</td><td data-label="돌파 추가" data-editable="true">100</td><td data-label="승급 합계" data-editable="true">150</td></tr>
@@ -1675,9 +1818,9 @@ body.admin-active .agent-tab-btn[data-agent-hidden="true"]::after { content:'숨
 <tr><td data-label="등급" data-editable="true"><span class="badge badge-red">Ex</span></td><td data-label="레벨" data-editable="true">91~100</td><td data-label="스탯 합계" data-editable="true">910~1,000</td><td data-label="레벨업" data-editable="true">50,000</td><td data-label="돌파 추가" data-editable="true">해당 없음</td><td data-label="승급 합계" data-editable="true">Lv.100 성장 종료</td></tr>
 </tbody>
 </table></div></div></details>
-<details class="rule-section" data-reading-guide="1" id="rules-checks" open=""><summary><span class="rule-section-icon" aria-hidden="true">🎲</span><span class="rule-summary-copy">일반 판정</span></summary><div><ul class="rule-lines"><li><span class="rule-line-icon" aria-hidden="true">🎚️</span><span class="rule-line-copy">진행자가 스탯과 난이도를 먼저 알린다. 스탯이 난이도보다 낮으면 <strong>시도 불가</strong>, <strong>2배</strong> 이상이면 고정 난도 판정은 <strong>자동 성공</strong>한다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🎲</span><span class="rule-line-copy">그 사이는 <strong>D20</strong>+보너스+보정이 <strong>10</strong>을 넘으면 성공한다. 난이도의 <strong>10%</strong>만큼 스탯이 초과할 때마다 보너스 <strong>+1</strong>(소수점 버림). 자연 <strong>1·20</strong>에 별도 효과는 없다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🧰</span><span class="rule-line-copy">적합한 준비는 최대 <strong>2개</strong>까지, 각각 원래 난이도의 <strong>10%</strong>(버림·최소 <strong>1</strong>)를 낮춘다. 최종 난이도는 최소 <strong>1</strong>이며 스탯 <strong>0</strong>은 준비로 통과할 수 없다.</span></li><li><span class="rule-line-icon" aria-hidden="true">⚖️</span><span class="rule-line-copy">비전투 대항은 양쪽 시도 조건을 확인한 뒤 <strong>D20</strong> 총합을 비교한다. 고정 난도 <strong>자동 성공</strong>도 대항 승리를 보장하지 않는다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🤝</span><span class="rule-line-copy">동점은 유효 민첩→보정 없는 <strong>D20</strong> <strong>1회</strong> 순이며 다시 같으면 방어·현 상태 유지 측이 이긴다. 상황 변화 없는 실패 재시도는 불가다.</span></li></ul></div></details>
-<details class="rule-section" data-reading-guide="1" id="rules-combat" open=""><summary><span class="rule-section-icon" aria-hidden="true">⚔️</span><span class="rule-summary-copy">전투</span></summary><div><ul class="rule-lines"><li><span class="rule-line-icon" aria-hidden="true">⏱️</span><span class="rule-line-copy"><strong>1</strong>라운드는 약 <strong>6초</strong>. 자기 턴마다 주행동 <strong>1회</strong>·이동 <strong>6m</strong>·보조행동 <strong>1회</strong>, 다음 자기 턴까지 반응 <strong>1회</strong>다. 민첩순으로 행동하며 주행동을 포기하면 <strong>6m</strong> 더 이동한다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🎲</span><span class="rule-line-copy">명중·회피는 각자 <strong>0</strong>~유효 민첩을 굴려 비교한다. 최대치가 나오면 계속 재굴림해 합산하고 별도 보정을 더한다. 동점 처리는 일반 대항과 같다. 회피 굴림은 반응을 쓰지 않는다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🎯</span><span class="rule-line-copy">기본 근접 <strong>1.5m</strong>·직접 마법 <strong>20m</strong>·설치 <strong>5m</strong>이며 개별 사거리를 우선한다. 영역 공격은 공격 합계 <strong>1개</strong>와 대상별 회피를 비교한다. 기습 성공은 첫 공격 <strong>+2</strong>·상대 반응 불가다.</span></li><li><span class="rule-line-icon" aria-hidden="true">💥</span><span class="rule-line-copy">피해는 공격 기준값×배수+고정값에 치명타·방어·감소를 적용해 마지막에 버린다. 방어 적용 비율은 <strong>100</strong>÷(<strong>100</strong>+방어력), 감소율 상한은 <strong>80%</strong>다. 기본 치명타 <strong>5%</strong>·피해 <strong>1.5배</strong>다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🛡️</span><span class="rule-line-copy">반응 방어는 명중한 공격 <strong>1회</strong>의 최종 피해 <strong>-20%</strong>. 기본 무기 공격은 무료, 기본 마법은 주행동·<strong>MP 1</strong>이며 지능·민첩이 양수여야 한다. 자원이 부족하면 사용할 수 없다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🌀</span><span class="rule-line-copy">상태는 명중 후 <strong>D100</strong>으로 확인한다(기본 확률+보정−저항, <strong>0~100%</strong>, 면역 우선). 같은 이름의 효과는 강한 값과 새 지속시간만 유지한다. 지속 초÷<strong>6</strong>을 올림해 최소 <strong>1</strong>대상 턴으로 센다.</span></li></ul></div></details>
-<details class="rule-section" data-reading-guide="1" id="rules-soul" open=""><summary><span class="rule-section-icon" aria-hidden="true">✨</span><span class="rule-summary-copy">영혼 고유 능력 작성</span></summary><div><ul class="rule-lines"><li><span class="rule-line-icon" aria-hidden="true">✍️</span><span class="rule-line-copy">신입은 진행자와 고유 특성 <strong>1종</strong>·고유 스킬 <strong>1종</strong>을 작성한다. 각각 최대 <strong>3종</strong>까지 가질 수 있다.</span></li><li><span class="rule-line-icon" aria-hidden="true">✨</span><span class="rule-line-copy">추가 각성은 이야기의 명시적 성취로 얻으며 상점에서 살 수 없다.</span></li><li><span class="rule-line-icon" aria-hidden="true">📝</span><span class="rule-line-copy">이름·행동·비용·거리·대상·지속·횟수·판정·불가능한 일을 기록한다. 구매 가능한 육신 회로로 중복 생성하지 않는다.</span></li></ul></div></details></div></section>
+<details class="rule-section" data-reading-guide="1" id="rules-checks" open><summary><span class="rule-section-icon" aria-hidden="true">🎲</span><span class="rule-summary-copy">일반 판정</span></summary><div><ul class="rule-lines"><li><span class="rule-line-icon" aria-hidden="true">🎚️</span><span class="rule-line-copy">진행자가 스탯과 난이도를 먼저 알린다. 스탯이 난이도보다 낮으면 <strong>시도 불가</strong>, <strong>2배</strong> 이상이면 고정 난도 판정은 <strong>자동 성공</strong>한다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🎲</span><span class="rule-line-copy">그 사이는 <strong>D20</strong>+보너스+보정이 <strong>10</strong>을 넘으면 성공한다. 난이도의 <strong>10%</strong>만큼 스탯이 초과할 때마다 보너스 <strong>+1</strong>(소수점 버림). 자연 <strong>1·20</strong>에 별도 효과는 없다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🧰</span><span class="rule-line-copy">적합한 준비는 최대 <strong>2개</strong>까지, 각각 원래 난이도의 <strong>10%</strong>(버림·최소 <strong>1</strong>)를 낮춘다. 최종 난이도는 최소 <strong>1</strong>이며 스탯 <strong>0</strong>은 준비로 통과할 수 없다.</span></li><li><span class="rule-line-icon" aria-hidden="true">⚖️</span><span class="rule-line-copy">비전투 대항은 양쪽 시도 조건을 확인한 뒤 <strong>D20</strong> 총합을 비교한다. 고정 난도 <strong>자동 성공</strong>도 대항 승리를 보장하지 않는다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🤝</span><span class="rule-line-copy">동점은 유효 민첩→보정 없는 <strong>D20</strong> <strong>1회</strong> 순이며 다시 같으면 방어·현 상태 유지 측이 이긴다. 상황 변화 없는 실패 재시도는 불가다.</span></li></ul></div></details>
+<details class="rule-section" data-reading-guide="1" id="rules-combat" open><summary><span class="rule-section-icon" aria-hidden="true">⚔️</span><span class="rule-summary-copy">전투</span></summary><div><ul class="rule-lines"><li><span class="rule-line-icon" aria-hidden="true">⏱️</span><span class="rule-line-copy"><strong>1</strong>라운드는 약 <strong>6초</strong>. 자기 턴마다 주행동 <strong>1회</strong>·이동 <strong>6m</strong>·보조행동 <strong>1회</strong>, 다음 자기 턴까지 반응 <strong>1회</strong>다. 민첩순으로 행동하며 주행동을 포기하면 <strong>6m</strong> 더 이동한다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🎲</span><span class="rule-line-copy">명중·회피는 각자 <strong>0</strong>~유효 민첩을 굴려 비교한다. 최대치가 나오면 계속 재굴림해 합산하고 별도 보정을 더한다. 동점 처리는 일반 대항과 같다. 회피 굴림은 반응을 쓰지 않는다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🎯</span><span class="rule-line-copy">기본 근접 <strong>1.5m</strong>·직접 마법 <strong>20m</strong>·설치 <strong>5m</strong>이며 개별 사거리를 우선한다. 영역 공격은 공격 합계 <strong>1개</strong>와 대상별 회피를 비교한다. 기습 성공은 첫 공격 <strong>+2</strong>·상대 반응 불가다.</span></li><li><span class="rule-line-icon" aria-hidden="true">💥</span><span class="rule-line-copy">피해는 공격 기준값×배수+고정값에 치명타·방어·감소를 적용해 마지막에 버린다. 방어 적용 비율은 <strong>100</strong>÷(<strong>100</strong>+방어력), 감소율 상한은 <strong>80%</strong>다. 기본 치명타 <strong>5%</strong>·피해 <strong>1.5배</strong>다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🛡️</span><span class="rule-line-copy">반응 방어는 명중한 공격 <strong>1회</strong>의 최종 피해 <strong>-20%</strong>. 기본 무기 공격은 무료, 기본 마법은 주행동·<strong>MP 1</strong>이며 지능·민첩이 양수여야 한다. 자원이 부족하면 사용할 수 없다.</span></li><li><span class="rule-line-icon" aria-hidden="true">🌀</span><span class="rule-line-copy">상태는 명중 후 <strong>D100</strong>으로 확인한다(기본 확률+보정−저항, <strong>0~100%</strong>, 면역 우선). 같은 이름의 효과는 강한 값과 새 지속시간만 유지한다. 지속 초÷<strong>6</strong>을 올림해 최소 <strong>1</strong>대상 턴으로 센다.</span></li></ul></div></details>
+<details class="rule-section" data-reading-guide="1" id="rules-soul" open><summary><span class="rule-section-icon" aria-hidden="true">✨</span><span class="rule-summary-copy">영혼 고유 능력 작성</span></summary><div><ul class="rule-lines"><li><span class="rule-line-icon" aria-hidden="true">✍️</span><span class="rule-line-copy">신입은 진행자와 고유 특성 <strong>1종</strong>·고유 스킬 <strong>1종</strong>을 작성한다. 각각 최대 <strong>3종</strong>까지 가질 수 있다.</span></li><li><span class="rule-line-icon" aria-hidden="true">✨</span><span class="rule-line-copy">추가 각성은 이야기의 명시적 성취로 얻으며 상점에서 살 수 없다.</span></li><li><span class="rule-line-icon" aria-hidden="true">📝</span><span class="rule-line-copy">이름·행동·비용·거리·대상·지속·횟수·판정·불가능한 일을 기록한다. 구매 가능한 육신 회로로 중복 생성하지 않는다.</span></li></ul></div></details></div></section>
 
     <!-- ==================== TAB 4: 사내 통합 상점 ==================== -->
     <section id="tab-shop" class="tab-section">
@@ -2697,6 +2840,8 @@ body.admin-active .agent-tab-btn[data-agent-hidden="true"]::after { content:'숨
     </section>
 
     <!-- ==================== TAB 7: 최하급 시나리오 10선 ==================== -->
+    <section id="tab-application" class="tab-section"></section>
+
     <section id="tab-scenarios" class="tab-section">
       <div class="hero-banner">
         <span class="hero-badge" data-editable="true">F~E RANK MISSIONS</span>
@@ -5590,6 +5735,306 @@ body.admin-active .agent-tab-btn[data-agent-hidden="true"]::after { content:'숨
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initialize);else initialize();
 })();
 </script>
+<script id="trpg-application-ui">
+(function () {
+  'use strict';
+
+  const STORAGE_KEY = 'deus-ex.character-application.draft.v1';
+  const BUDGET = 10;
+  const fields = ['name', 'height', 'weight', 'age', 'gender', 'personality', 'history', 'trait', 'skill'];
+  const stats = [
+    ['health', '건강', 'HEALTH'], ['strength', '근력', 'STRENGTH'],
+    ['stamina', '지구력', 'STAMINA'], ['intelligence', '지능', 'INTELLIGENCE'],
+    ['wisdom', '지혜', 'WISDOM'], ['agility', '민첩', 'AGILITY'],
+    ['charisma', '매력', 'CHARISMA']
+  ];
+  const limitFor = key => ['personality', 'history', 'trait', 'skill'].includes(key) ? 6000 : 120;
+  const emptyDraft = () => ({ fields: Object.fromEntries(fields.map(key => [key, ''])), stats: Object.fromEntries(stats.map(([key]) => [key, 0])) });
+
+  // The exported page recreates its blank form on load; browser drafts stay local.
+  function prepareExport(copy) {
+    const section = copy.querySelector('#tab-application');
+    if (section) {
+      section.replaceChildren();
+      delete section.dataset.applicationReady;
+    }
+  }
+  window.TRPGApplication = Object.freeze({ prepareExport });
+
+  function initialize() {
+    const section = document.getElementById('tab-application');
+    if (!section || section.dataset.applicationReady === 'true') return;
+    section.dataset.applicationReady = 'true';
+    let draft = emptyDraft();
+    let savedMessage = '작성한 내용은 이 브라우저에 자동 저장됩니다.';
+    let storageFailed = false;
+    let nameTouched = false;
+
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+      if (saved?.version === 1) {
+        fields.forEach(key => {
+          if (typeof saved.fields?.[key] === 'string') draft.fields[key] = saved.fields[key].slice(0, limitFor(key));
+        });
+        let left = BUDGET;
+        stats.forEach(([key]) => {
+          const value = saved.stats?.[key];
+          if (Number.isSafeInteger(value) && value >= 0) {
+            draft.stats[key] = Math.min(value, left);
+            left -= draft.stats[key];
+          }
+        });
+        savedMessage = '이 브라우저에 저장된 초안을 불러왔습니다.';
+      }
+    } catch (error) {
+      storageFailed = true;
+      savedMessage = '자동 저장을 사용할 수 없습니다. 복사 또는 TXT로 보관해 주세요.';
+    }
+
+    section.innerHTML = `
+      <header class="application-hero">
+        <div class="application-hero-content">
+          <p class="application-kicker">CHARACTER APPLICATION</p>
+          <div class="application-title-row"><h1>캐릭터 신청</h1><span class="application-temp-badge">임시 양식</span></div>
+          <p class="application-intro">이곳에서 시작될, 당신의 이야기.</p>
+          <p class="application-hero-description">캐릭터의 정보와 능력을 작성하고 신청서를 완성해 주세요.</p>
+        </div>
+        <div class="application-document-mark" aria-hidden="true"><span>DEUS EX</span><strong>PERSONNEL<br>APPLICATION</strong><small>FORM NO. 01 / DRAFT</small></div>
+      </header>
+      <div class="application-draft-bar"><span id="application-draft-status" role="status"></span><span class="application-private-note">개인 초안 · 이 브라우저에만 저장</span></div>
+      <form id="application-form" class="application-form" novalidate autocomplete="off">
+        <section class="application-card application-basic" aria-labelledby="application-basic-heading">
+          <header class="application-card-header"><span class="application-section-number">01</span><div><h2 id="application-basic-heading">기본 정보</h2><p>새로운 캐릭터를 소개해 주세요.</p></div><span class="application-required-note"><b>*</b> 필수 입력</span></header>
+          <div class="application-basic-grid">
+            <label class="application-field application-name-field" for="application-name"><span>이름 <b aria-hidden="true">*</b></span><input id="application-name" name="application-name" type="text" maxlength="120" placeholder="캐릭터의 이름" required aria-describedby="application-name-error"><small id="application-name-error" class="application-field-error" hidden>캐릭터 이름을 입력해 주세요.</small></label>
+            <label class="application-field" for="application-age"><span>나이</span><input id="application-age" name="application-age" type="text" maxlength="120" placeholder="예: 27세"></label>
+            <label class="application-field" for="application-gender"><span>성별</span><input id="application-gender" name="application-gender" type="text" maxlength="120" placeholder="자유롭게 입력"></label>
+            <label class="application-field application-body-field" for="application-height"><span>키</span><span class="application-unit-input"><input id="application-height" name="application-height" type="text" inputmode="decimal" maxlength="120" placeholder="예: 178"><span aria-hidden="true">cm</span></span></label>
+            <label class="application-field application-body-field" for="application-weight"><span>몸무게</span><span class="application-unit-input"><input id="application-weight" name="application-weight" type="text" inputmode="decimal" maxlength="120" placeholder="예: 72"><span aria-hidden="true">kg</span></span></label>
+          </div>
+        </section>
+        <div class="application-detail-grid">
+          <section class="application-card application-story" aria-labelledby="application-story-heading">
+            <header class="application-card-header"><span class="application-section-number">02</span><div><h2 id="application-story-heading">서사와 능력</h2><p>캐릭터만의 개성을 담아 주세요.</p></div></header>
+            <div class="application-story-fields">
+              <label class="application-field" for="application-personality"><span>성격 <small>PERSONALITY</small></span><textarea id="application-personality" name="application-personality" rows="3" maxlength="6000" placeholder="성향, 가치관, 말투나 습관 등을 적어 주세요."></textarea></label>
+              <label class="application-field" for="application-history"><span>과거사 <small>BACKGROUND</small></span><textarea id="application-history" name="application-history" rows="4" maxlength="6000" placeholder="지금의 캐릭터를 만든 사건이나 기억, 살아온 이야기를 들려주세요."></textarea></label>
+              <label class="application-field" for="application-trait"><span>고유 특성 <small>UNIQUE TRAIT</small></span><textarea id="application-trait" name="application-trait" rows="3" maxlength="6000" placeholder="타고난 특성이나 특별한 자질과 그 특징을 적어 주세요."></textarea></label>
+              <label class="application-field" for="application-skill"><span>고유 스킬 <small>UNIQUE SKILL</small></span><textarea id="application-skill" name="application-skill" rows="3" maxlength="6000" placeholder="스킬의 이름, 효과와 사용 방식 등을 적어 주세요."></textarea></label>
+            </div>
+          </section>
+          <section class="application-card application-stats" aria-labelledby="application-stats-heading">
+            <header class="application-card-header"><span class="application-section-number">03</span><div><h2 id="application-stats-heading">스탯 배분</h2><p>총 10점을 자유롭게 나누어 주세요.</p></div></header>
+            <div class="application-budget"><div><span>남은 포인트</span><strong><span id="application-remaining">10</span><small>PT</small></strong></div><span id="application-budget-badge">배분 중</span><progress id="application-progress" max="10" value="0" aria-label="배분한 스탯 포인트"></progress><p><span>배분한 포인트</span><b id="application-used">0 / 10</b></p></div>
+            <p id="application-stat-help" class="application-stat-help">각 스탯은 0 이상의 정수로 입력할 수 있습니다.</p>
+            <div class="application-stat-list">${stats.map(([key, label, english]) => `<div class="application-stat-row"><label for="application-stat-${key}">${label}<small>${english}</small></label><div class="application-stepper"><button type="button" data-application-key="${key}" data-application-step="-1" aria-label="${label} 1점 줄이기">−</button><input id="application-stat-${key}" name="application-stat-${key}" data-application-stat="${key}" type="number" inputmode="numeric" min="0" max="10" step="1" value="0" aria-describedby="application-stat-help"><button type="button" data-application-key="${key}" data-application-step="1" aria-label="${label} 1점 늘리기">+</button></div></div>`).join('')}</div>
+            <p id="application-stat-error" class="application-stat-error" role="status" hidden></p>
+            <div class="application-output-area"><p id="application-ready-message">이름과 스탯 10점을 채우면 신청서를 내보낼 수 있습니다.</p><div class="application-actions"><button id="application-copy" class="application-primary-button" type="button" disabled><span aria-hidden="true">⧉</span> 신청서 복사</button><button id="application-download" class="application-secondary-button" type="button" disabled><span aria-hidden="true">↓</span> TXT 저장</button></div><p class="application-delivery-note">완성한 신청서를 복사하거나 저장해 전달해 주세요.</p></div>
+          </section>
+        </div>
+        <div id="application-feedback" class="application-feedback" role="status" hidden></div>
+        <section id="application-copy-panel" class="application-copy-panel" aria-labelledby="application-copy-heading" hidden><div><h2 id="application-copy-heading">신청서 직접 복사</h2><button id="application-copy-close" type="button" aria-label="직접 복사 영역 닫기">닫기</button></div><p>선택된 내용을 기기의 복사 기능으로 복사해 주세요.</p><textarea id="application-copy-text" readonly rows="12" aria-label="직접 복사할 신청서" spellcheck="false"></textarea></section>
+        <footer class="application-footer"><p>작성 내용은 초안으로만 보관되며, 자동으로 제출되지 않습니다.</p><button id="application-reset" type="button">초안 초기화</button></footer>
+      </form>`;
+
+    const byId = suffix => section.querySelector('#application-' + suffix);
+    const form = byId('form');
+    const used = () => stats.reduce((sum, [key]) => sum + draft.stats[key], 0);
+    const showFeedback = (text, kind = 'info') => {
+      const output = byId('feedback');
+      output.textContent = text;
+      output.dataset.kind = kind;
+      output.hidden = !text;
+    };
+    const closeManualCopy = () => {
+      byId('copy-panel').hidden = true;
+      byId('copy-text').value = '';
+    };
+
+    function render() {
+      const total = used();
+      const remaining = BUDGET - total;
+      const hasName = !!draft.fields.name.trim();
+      byId('remaining').textContent = String(remaining);
+      byId('used').textContent = total + ' / ' + BUDGET;
+      byId('progress').value = total;
+      byId('budget-badge').textContent = remaining === 0 ? '배분 완료' : '배분 중';
+      byId('budget-badge').dataset.complete = String(remaining === 0);
+      byId('name-error').hidden = hasName || !nameTouched;
+      byId('name').setAttribute('aria-invalid', String(nameTouched && !hasName));
+      stats.forEach(([key]) => {
+        const input = byId('stat-' + key);
+        input.value = String(draft.stats[key]);
+        input.max = String(draft.stats[key] + remaining);
+        section.querySelector(`[data-application-key="${key}"][data-application-step="-1"]`).disabled = draft.stats[key] === 0;
+        section.querySelector(`[data-application-key="${key}"][data-application-step="1"]`).disabled = remaining === 0;
+      });
+      const ready = hasName && remaining === 0;
+      byId('copy').disabled = !ready;
+      byId('download').disabled = !ready;
+      byId('ready-message').textContent = ready ? '신청서를 내보낼 준비가 되었습니다.' : !hasName && remaining === 0 ? '캐릭터 이름을 입력하면 신청서를 내보낼 수 있습니다.' : hasName ? `스탯 ${remaining}점을 더 배분하면 신청서를 내보낼 수 있습니다.` : '이름과 스탯 10점을 채우면 신청서를 내보낼 수 있습니다.';
+      byId('ready-message').dataset.ready = String(ready);
+      byId('draft-status').textContent = savedMessage;
+      byId('draft-status').dataset.state = storageFailed ? 'warning' : 'saved';
+    }
+
+    function persist() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({ version: 1, fields: draft.fields, stats: draft.stats }));
+        storageFailed = false;
+        savedMessage = '이 브라우저에 초안 저장됨';
+      } catch (error) {
+        storageFailed = true;
+        savedMessage = '자동 저장을 사용할 수 없습니다. 복사 또는 TXT로 보관해 주세요.';
+      }
+      render();
+    }
+
+    function statError(message) {
+      byId('stat-error').textContent = message;
+      byId('stat-error').hidden = !message;
+    }
+
+    function updateStat(key, raw) {
+      const value = raw === '' ? 0 : Number(raw);
+      if (!/^\d*$/.test(raw) || !Number.isSafeInteger(value) || value < 0) {
+        statError('스탯은 0 이상의 정수로 입력해 주세요.');
+        render();
+        return;
+      }
+      if (used() - draft.stats[key] + value > BUDGET) {
+        statError('스탯은 총 10점까지 배분할 수 있습니다. 다른 스탯을 먼저 줄여 주세요.');
+        render();
+        return;
+      }
+      draft.stats[key] = value;
+      statError('');
+      showFeedback('');
+      closeManualCopy();
+      persist();
+    }
+
+    fields.forEach(key => {
+      const input = byId(key);
+      input.value = draft.fields[key];
+      input.addEventListener('input', () => {
+        draft.fields[key] = input.value.slice(0, limitFor(key));
+        closeManualCopy();
+        showFeedback('');
+        persist();
+      });
+    });
+    byId('name').addEventListener('blur', () => { nameTouched = true; render(); });
+    section.querySelectorAll('[data-application-stat]').forEach(input => {
+      input.addEventListener('input', () => updateStat(input.dataset.applicationStat, input.value));
+      input.addEventListener('keydown', event => {
+        if (['e', 'E', '+', '-', '.', ','].includes(event.key)) event.preventDefault();
+      });
+    });
+    section.querySelectorAll('[data-application-step]').forEach(button => {
+      button.addEventListener('click', () => {
+        const key = button.dataset.applicationKey;
+        updateStat(key, String(draft.stats[key] + Number(button.dataset.applicationStep)));
+      });
+    });
+
+    function validate() {
+      nameTouched = true;
+      render();
+      if (!draft.fields.name.trim()) {
+        showFeedback('캐릭터 이름을 입력해 주세요.', 'error');
+        byId('name').focus();
+        return false;
+      }
+      if (used() !== BUDGET) {
+        showFeedback('스탯 10점을 모두 배분해 주세요.', 'error');
+        return false;
+      }
+      return true;
+    }
+
+    function plainText() {
+      const value = key => draft.fields[key].trim() || '미작성';
+      const height = draft.fields.height.trim();
+      const weight = draft.fields.weight.trim();
+      return [
+        '[ 캐릭터 신청 양식 ( 임시 ) ]', '',
+        '이름: ' + value('name'),
+        '신체 스펙 ( 키/몸무게 ): ' + (height ? height + ' cm' : '미작성') + ' / ' + (weight ? weight + ' kg' : '미작성'),
+        '나이: ' + value('age'), '성별: ' + value('gender'), '',
+        '성격\n' + value('personality'), '', '과거사\n' + value('history'), '',
+        '고유 특성\n' + value('trait'), '', '고유 스킬\n' + value('skill'), '',
+        ...stats.map(([key, label]) => label + ': ' + draft.stats[key]), '',
+        '스탯 분배: ' + used() + ' / ' + BUDGET
+      ].join('\r\n');
+    }
+
+    byId('copy').addEventListener('click', async () => {
+      if (!validate()) return;
+      const text = plainText();
+      try {
+        if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
+        await navigator.clipboard.writeText(text);
+        closeManualCopy();
+        showFeedback('신청서를 복사했습니다. 전달할 곳에 붙여넣어 주세요.', 'success');
+      } catch (error) {
+        byId('copy-panel').hidden = false;
+        byId('copy-text').value = text;
+        byId('copy-text').focus();
+        byId('copy-text').select();
+        showFeedback('자동 복사를 사용할 수 없습니다. 아래 선택된 신청서를 직접 복사해 주세요.');
+      }
+    });
+    byId('copy-close').addEventListener('click', () => { closeManualCopy(); byId('copy').focus(); });
+
+    byId('download').addEventListener('click', () => {
+      if (!validate()) return;
+      let url;
+      try {
+        const blob = new Blob(['\uFEFF', plainText()], { type: 'text/plain;charset=utf-8' });
+        url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        const name = draft.fields.name.trim().replace(/[<>:"/\\|?*\u0000-\u001f]/g, '_').slice(0, 40);
+        link.href = url;
+        link.download = 'DEUS_EX_캐릭터신청_' + name + '.txt';
+        link.hidden = true;
+        form.append(link);
+        link.click();
+        link.remove();
+        showFeedback('신청서 TXT 파일을 저장했습니다.', 'success');
+      } catch (error) {
+        showFeedback('파일을 저장하지 못했습니다. 신청서 복사를 이용해 주세요.', 'error');
+      } finally {
+        if (url) setTimeout(() => URL.revokeObjectURL(url), 1000);
+      }
+    });
+
+    byId('reset').addEventListener('click', () => {
+      draft = emptyDraft();
+      nameTouched = false;
+      fields.forEach(key => { byId(key).value = ''; });
+      closeManualCopy();
+      statError('');
+      try {
+        localStorage.removeItem(STORAGE_KEY);
+        storageFailed = false;
+        savedMessage = '초안을 초기화했습니다. 새 캐릭터를 작성해 주세요.';
+      } catch (error) {
+        storageFailed = true;
+        savedMessage = '화면을 초기화했습니다. 저장된 초안은 브라우저 설정에서 삭제해 주세요.';
+      }
+      render();
+      showFeedback('캐릭터 신청 초안을 초기화했습니다.');
+      byId('name').focus();
+    });
+    form.addEventListener('submit', event => { event.preventDefault(); validate(); });
+    render();
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initialize, { once: true });
+  else initialize();
+}());
+</script>
 <script id="trpg-portal-ui">
 (function(){
   'use strict';
@@ -5700,7 +6145,8 @@ body.admin-active .agent-tab-btn[data-agent-hidden="true"]::after { content:'숨
       if(frame&&!frame.closest('.portrait-detail')){const details=make('details','','portrait-detail');details.append(make('summary','인물 사진 보기'));frame.before(details);details.append(frame);}
     });
   }
-  function initialize(){reviseBook();prioritizeVessels();agentVisibility();navigation();window.openTab('tab-recruit');}
+  function initialize(){reviseBook();prioritizeVessels();agentVisibility();navigation();window.openTab(location.hash==='#tab-application'?'tab-application':'tab-recruit');}
+  window.addEventListener('hashchange',()=>{if(location.hash==='#tab-application')window.openTab('tab-application');});
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initialize);else initialize();
 })();
 </script>
@@ -5814,6 +6260,7 @@ body.admin-active .agent-tab-btn[data-agent-hidden="true"]::after { content:'숨
     copy.querySelectorAll('.commerce-dialog, #commerce-feedback').forEach(element => element.remove());
     copy.querySelectorAll('.rules-dialog, #rules-feedback').forEach(element => element.remove());
     window.TRPGAgentVisibility?.prepareExport(copy);
+    window.TRPGApplication?.prepareExport(copy);
     return '<!DOCTYPE html>\n' + copy.outerHTML;
   }
 
